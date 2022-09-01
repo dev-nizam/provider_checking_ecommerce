@@ -1,6 +1,9 @@
 
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:provider_chacking_ecommerce/login/login.dart';
+import 'package:provider_chacking_ecommerce/model/loginModel.dart';
+import 'package:provider_chacking_ecommerce/provider/LoginProvider.dart';
 
 class SignUp extends StatefulWidget {
   const SignUp({Key? key}) : super(key: key);
@@ -10,26 +13,18 @@ class SignUp extends StatefulWidget {
 }
 
 class _SignUpState extends State<SignUp> {
-  // late LoginModel loginModel;
+   late LoginModel loginModel;
   TextEditingController FullnameController= TextEditingController();
-  // TextEditingController MobileNumberController=TextEditingController();
+
   TextEditingController EmailController=TextEditingController();
   TextEditingController PasswordController=TextEditingController();
-  // TextEditingController ConfirmPasswordController=TextEditingController();
-  // TextEditingController OtpController=TextEditingController();
   @override
   Widget build(BuildContext context) {
-    // final registerProvider = Provider.of<LoginProvider>(context);
+     final registerProvider = Provider.of<UserProvider>(context);
     return SafeArea(
       child: Scaffold(
         body:
-        // registerProvider.loading
-        //     ? const Center(
-        //   child: CircularProgressIndicator(
-        //     color: Colors.red,
-        //   ),
-        // )
-        //     :
+
         Container(
           height: MediaQuery.of(context).size.height,
           child: ListView(
@@ -124,17 +119,10 @@ class _SignUpState extends State<SignUp> {
                           child: const Text('SignUp'),
                           onPressed: () {
                             print("*********************************************************");
-                            // final registerProvider = Provider.of<LoginProvider>(
-                            //     context,
-                            //     listen: false);
-                            // registerProvider.userregisration(
-                            //   context,
-                            //   PasswordController.text,
-                            //   EmailController.text,
-                            //   FullnameController.text,
-                            //
-                            // );
-
+                            final loginProvider = Provider.of<UserProvider>(
+                                context,
+                                listen: false);
+                            loginProvider .getSignupApiData(email: EmailController.text, password:  PasswordController.text, name: FullnameController.text);
                             // print(MobileNomberController.text);
                             // print(passwordController.text);
                           },

@@ -1,7 +1,10 @@
 
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:provider_chacking_ecommerce/home/home.dart';
 import 'package:provider_chacking_ecommerce/login/signup.dart';
+import 'package:provider_chacking_ecommerce/model/loginModel.dart';
+import 'package:provider_chacking_ecommerce/provider/LoginProvider.dart';
 
 class Login extends StatefulWidget {
   const Login({Key? key}) : super(key: key);
@@ -11,23 +14,17 @@ class Login extends StatefulWidget {
 }
 
 class _LoginState extends State<Login> {
-  // late LoginModel loginModel;
+   late LoginModel loginModel;
   TextEditingController EmailController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
-    // final loginProvider = Provider.of<LoginProvider>(context);
+     final loginProvider = Provider.of<UserProvider>(context);
     return SafeArea(
       child: Scaffold(
         body:
-        // loginProvider.loading
-        //     ? const Center(
-        //   child: CircularProgressIndicator(
-        //     color: Colors.red,
-        //   ),
-        // )
-        //     :
+
         SizedBox(
           height: MediaQuery.of(context).size.height,
           child: ListView(
@@ -121,14 +118,12 @@ class _LoginState extends State<Login> {
                     child: ElevatedButton(
                       child: const Text('Login'),
                       onPressed: () {
-                        // final loginProvider = Provider.of<LoginProvider>(
-                        //     context,
-                        //     listen: false);
-                        // loginProvider.userLogin(
-                        //     context,
-                        //     passwordController.text,
-                        //     EmailController.text);
-                        Navigator.push(context, MaterialPageRoute(builder: (ctx)=>Screen_Home()));
+                        final loginProvider = Provider.of<UserProvider>(
+                            context,
+                            listen: false);
+                        loginProvider.getLoginApiData( email: EmailController.text,password:passwordController.text );
+
+                        // Navigator.push(context, MaterialPageRoute(builder: (ctx)=>Screen_Home()));
                         // }
 
                         // print(MobileNomberController.text);
