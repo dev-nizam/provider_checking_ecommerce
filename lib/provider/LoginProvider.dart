@@ -1,5 +1,11 @@
+
+
+
+
+
 import 'package:flutter/material.dart';
 import 'package:provider_chacking_ecommerce/api/login_api.dart';
+import 'package:provider_chacking_ecommerce/home/home.dart';
 import 'package:provider_chacking_ecommerce/model/loginModel.dart';
 
 
@@ -9,10 +15,11 @@ class UserProvider with ChangeNotifier{
 
   bool loading =false;
 
-  getLoginApiData({required String email,required String password}) async{
-    loading = true;
-    loginModel = await loginApi.getLoginPage(password: '', email: '');
-    loading = false;
+  getLoginApiData({required String email,required String password,required BuildContext context }) async{
+    // loading = true;
+    loginModel = await loginApi.getLoginPage(password: password, email: email);
+
+    // loading = false;
     notifyListeners();
   }
 

@@ -10,15 +10,19 @@ class LoginApi{
   Future<LoginModel> getLoginPage({required String email,required String password}) async{
     final body={"identifier":email,"password":password};
     print(body);
-    Response response = await apiClient.invokeApi(path: '/api/auth/local',method:  'GET',body:  body);
+    Response response = await apiClient.invokeApi(path: 'auth/local/',method:  'POST',body:  body);
     return LoginModel.fromJson(jsonDecode(response.body));
   }
 
 
   Future<LoginModel> getSignPage( {required String name,required String email,required String password,}) async{
-    final body={"identifier":email,"password":password,"Username":name};
+    final body={"email":email,"password":password,"username":name};
     print(body);
-    Response response = await apiClient.invokeApi(path: '/api/auth/local/register/',method:  'GET',body:  body);
+
+    //final  body = "{\"name\": \"$userName\", \"email\": \"$userEmail\",\"password\": \"$userPassword\"}";
+
+
+    Response response = await apiClient.invokeApi(path:'auth/local/register',method:'POST',body:body);
     return LoginModel.fromJson(jsonDecode(response.body));
   }
 }

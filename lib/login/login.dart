@@ -118,12 +118,19 @@ class _LoginState extends State<Login> {
                     child: ElevatedButton(
                       child: const Text('Login'),
                       onPressed: () {
-                        final loginProvider = Provider.of<UserProvider>(
-                            context,
-                            listen: false);
-                        loginProvider.getLoginApiData( email: EmailController.text,password:passwordController.text );
 
-                        // Navigator.push(context, MaterialPageRoute(builder: (ctx)=>Screen_Home()));
+                        if(EmailController.text == "" || passwordController.text == "" ){
+                          return;
+                        }else{
+                          final loginProvider = Provider.of<UserProvider>(
+                              context,
+                              listen: false);
+                          loginProvider.getLoginApiData( email: EmailController.text,password:passwordController.text ,context: context);
+                        }
+
+
+
+                         Navigator.push(context, MaterialPageRoute(builder: (ctx)=>Screen_Home()));
                         // }
 
                         // print(MobileNomberController.text);
@@ -141,22 +148,19 @@ class _LoginState extends State<Login> {
                           style: TextStyle(fontSize: 20),
                         ),
                         onPressed: () {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (ctx) => const SignUp(),
-                            ),
-                          );
+                          Navigator.push(context, MaterialPageRoute(builder: (ctx)=>SignUp()));
+
                         },
                       )
                     ],
                   ),
                 ],
               ),
-            ],
-          ),
+
+          ]),
         ),
       ),
     );
   }
+
 }

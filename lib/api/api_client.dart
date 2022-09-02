@@ -4,7 +4,7 @@ import 'package:http/http.dart';
 import 'package:provider_chacking_ecommerce/api/api_exception.dart';
 
 class ApiClient{
-  static final String basePath = "http://192.168.18.6:1338";
+  static final String basePath = "http://192.168.18.6:1338/api/";
   Future<Response> invokeApi({required String path,required String method,required Object? body}) async{
     Map<String, String> headerparams = {};
     Response response;
@@ -17,7 +17,7 @@ class ApiClient{
 
     switch (method) {
       case "POST":
-        response = await post(Uri.parse(url), headers: {"content-Type": "application/json",},body: body);
+        response = await post(Uri.parse(url), headers: {},body: body);
         break;
       case "PUT":
         response = await put(Uri.parse(url), headers: {'content-Type': 'application/json',}, body: body);
