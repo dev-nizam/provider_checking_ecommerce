@@ -122,7 +122,7 @@ class _SignUpState extends State<SignUp> {
                             final loginProvider = Provider.of<UserProvider>(
                                 context,
                                 listen: false);
-                            loginProvider .getSignupApiData(email:EmailController.text, password:PasswordController.text,name: FullnameController.text);
+                            loginProvider .getSignupApiData(context: context,email:EmailController.text, password:PasswordController.text,name: FullnameController.text);
                             Navigator.push(context, MaterialPageRoute(builder: (ctx)=>Login()));
                             // print(MobileNomberController.text);
                             // print(passwordController.text);

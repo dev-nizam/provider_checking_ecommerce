@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'dart:developer';
+
 import 'package:http/http.dart';
 import 'package:provider_chacking_ecommerce/api/api_exception.dart';
 
@@ -32,7 +33,12 @@ class ApiClient{
         response = await post(Uri.parse(url), headers:  {},body: body,);
         break;
       default:
-        response = await get(Uri.parse(url), headers: {'Accept': 'application/json','Content-Type': 'application/json'});
+        response = await get(Uri.parse(url), headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json',
+          "authorization":
+              "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTUsImlhdCI6MTY2MTkyNDE4NSwiZXhwIjoxNjY0NTE2MTg1fQ.LtAauoztyc9ted-52p-Oz3YiSZo1HPvA6hoDLcN0Ppk"
+        });
     }
     print('status of $path =>' + (response.statusCode).toString());
     print(response.body);

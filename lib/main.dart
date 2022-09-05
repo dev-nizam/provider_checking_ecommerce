@@ -1,13 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:provider_chacking_ecommerce/provider/LoginProvider.dart';
+import 'package:provider_chacking_ecommerce/provider/productProvider.dart';
 import 'package:provider_chacking_ecommerce/splash/splash.dart';
 
 void main() {
   runApp( MultiProvider(
       providers: [
-  ChangeNotifierProvider<UserProvider>(create: (_)=>UserProvider())
-      ],
+    ChangeNotifierProvider<UserProvider>(create: (_) => UserProvider()),
+    ChangeNotifierProvider<ProductProvider>(create: (_) => ProductProvider()),
+  ],
   child: MyApp()));
 }
 
