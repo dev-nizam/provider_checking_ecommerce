@@ -143,7 +143,7 @@ class _LoginState extends State<Login> {
                       const Text('Does not have account?'),
                       TextButton(
                         child: const Text(
-                          'Sign in',
+                          'Sign Up',
                           style: TextStyle(fontSize: 20),
                         ),
                         onPressed: () {

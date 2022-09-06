@@ -7,12 +7,16 @@ import 'package:provider_chacking_ecommerce/login/login.dart';
 import 'package:provider_chacking_ecommerce/model/loginModel.dart';
 import 'package:provider_chacking_ecommerce/model/productmodel.dart';
 
+import '../model/GetProductDetails.dart';
+
 
 class ProductProvider with ChangeNotifier{
-  late Productmodel productmodel;
+   Productmodel productmodel = Productmodel();
+ late  GetProductDetails getProductDetails;
+
   ProductApi productApi = ProductApi();
 
-  bool loading =false;
+  bool loading =true;
 
   getProductPage() async{
     loading = true;
@@ -20,4 +24,12 @@ class ProductProvider with ChangeNotifier{
     loading = false;
     notifyListeners();
   }
+
+
+   getProductDetailsProvider(String productId) async{
+     loading = true;
+     getProductDetails = await productApi.getProducDetails(productId);
+     loading = false;
+     notifyListeners();
+   }
 }
